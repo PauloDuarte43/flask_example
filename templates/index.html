@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title></title>
+    </head>
+    <body>
+        <form>
+            <label>Client ID:</label>
+            <input type="text" value="" name="client_id" id="client_id"/>
+            <button id="btn_pesquisar">Pesquisar</button>
+        </form>
+        <div id="result">
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script charset="utf-8">
+            $('#btn_pesquisar').click(function(e){
+                e.preventDefault();
+                $.post("/api/client", { client_id: $('#client_id').val() })
+                .done(function( data ) {
+                    $('#result').html("Nome:" + data.username + " E-mail: " + data.email)                        
+                });
+            });
+        </script>
+    </body>
+</html>
